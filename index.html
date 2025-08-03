@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-theme="light">
+  <div class="container">
+    
+    <!-- 🌗 Dark Mode Toggle Switch -->
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeSwitch" onchange="toggleTheme()" />
+        <span class="slider"></span>
+      </label>
+      <span class="theme-label">Dark Mode</span>
+    </div>
+
+    <h1>🧾 Invoice Generator</h1>
+
+    <!-- 🧩 Form Section -->
+    <section class="form-section">
+      <input type="text" id="invoiceNumber" placeholder="Invoice Number (e.g. #00123)" />
+      <input type="date" id="invoiceDate" />
+
+      <label for="logoUpload"><strong>Upload Company Logo:</strong></label>
+      <input type="file" id="logoUpload" accept="image/*" />
+      <img id="logoPreview" alt="Logo Preview" style="max-width: 150px; margin-top: 10px;" />
+
+      <input type="text" id="company" placeholder="Your Company Name" />
+      <input type="text" id="client" placeholder="Client Name" />
+      <input type="email" id="email" placeholder="Client Email" />
+      <input type="email" id="contactEmail" placeholder="Your Contact Email (for client inquiries)" />
+      <textarea id="notes" placeholder="Additional Notes"></textarea>
+
+      <!-- 📦 Items Section -->
+      <div id="items"></div>
+      <button type="button" onclick="addItem()">➕ Add Item</button>
+      <button type="button" onclick="generateAndDownloadInvoice()">Generate & Download PDF</button>
+      <button type="button" onclick="clearInvoice()">🧹 Clear Previous Invoice</button>
+    </section>
+
+    <!-- 📄 Preview Section -->
+    <section id="preview-section" style="display: none;">
+      <div id="invoice-preview" class="invoice">
+        
+        <!-- 🧾 Invoice Header -->
+        <div class="invoice-header">
+          <h2>Invoice</h2>
+          <p><strong>Invoice Number:</strong> <span id="previewInvoiceNumber"></span></p>
+          <p><strong>Date:</strong> <span id="previewInvoiceDate"></span></p>
+          <p><strong>Client:</strong> <span id="previewClient"></span></p>
+          <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+        </div>
+
+        <!-- 📊 Invoice Table -->
+        <table id="invoiceTable">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Tax (%)</th>
+              <th>Shipping</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceBody">
+            <!-- JavaScript will inject rows here -->
+          </tbody>
+        </table>
+
+        <!-- 📬 Contact Info -->
+        <p style="font-size: 0.9em; text-align: center; margin-top: 20px;">
+          For questions regarding this invoice, contact us at: 
+          <a href="#" id="previewContactEmail"></a>
+        </p>
+      </div>
+      <button type="button" onclick="downloadInvoice()">Download PDF</button>
+    </section>
+  </div>
+
+  <!-- 🧠 Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+

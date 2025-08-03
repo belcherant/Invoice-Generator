@@ -1,0 +1,235 @@
+/* Base Theme Variables */
+:root {
+  --bg-color: #f4f4f4;
+  --container-bg: #ffffff;
+  --text-color: #333;
+  --accent-color: #007bff;
+  --accent-hover: #0056b3;
+  --border-color: #ccc;
+  --header-color: #2c3e50;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+body[data-theme="dark"] {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --accent-color: #3399ff;
+  --accent-hover: #1a75d1;
+  --border-color: #444;
+  --header-color: #ffffff;
+  --shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Base Styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 20px;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: var(--container-bg);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Headings */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: var(--header-color);
+}
+
+/* Form Inputs */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--container-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Invoice Section */
+.invoice {
+  background: var(--container-bg);
+  padding: 30px;
+  border: 1px solid var(--border-color);
+  margin-top: 30px;
+  border-radius: 10px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Header */
+.invoice-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.invoice-header img {
+  display: block;
+  margin: 0 auto 10px;
+  max-width: 120px;
+}
+
+.invoice-header h2 {
+  margin: 10px 0;
+  font-size: 22px;
+  color: var(--header-color);
+}
+
+.invoice-header p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Table */
+#invoiceTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#invoiceTable th, #invoiceTable td {
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  background: var(--container-bg);
+  color: var(--text-color);
+}
+
+#invoiceTable th {
+  background-color: rgba(0,0,0,0.05);
+}
+
+/* Contact Info */
+#invoice-preview p {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Total */
+.invoice-total {
+  text-align: right;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--header-color);
+}
+
+/* Item Entry Grid */
+.invoice-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 600px) {
+  .invoice-item {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Theme Toggle Container */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; width: 20px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Label */
+.theme-label {
+  font-size: 14px;
+  color: var(--text-color);
+}
