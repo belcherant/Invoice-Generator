@@ -1,1 +1,2 @@
 Aug 5, 2025 - Began integrating ai via Hugging Face.
+Aug 9, 2025 - Tweaked AI so it displays summary of product / order details (weight, quantity, invoice number, etc).
